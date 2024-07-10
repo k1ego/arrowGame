@@ -1,5 +1,6 @@
 export interface IPlaygroundStepsState {
-	currentValue: string;
+	currentValue: string | null;
+	entereadValue: string | null;
 }
 
 

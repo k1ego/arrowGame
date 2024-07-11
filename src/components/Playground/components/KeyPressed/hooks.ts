@@ -14,5 +14,5 @@ export const useKeyPressedElement = (): string => {
 			return MAP_ARROW_CODES[entereadValue as keyof IMapArrowCodes]
 		}
 	}
-	return "NO"
+	return "⌛️"
 }

@@ -31,7 +31,7 @@ export const playgroundSlice = createSlice({
         // сохранили пришедший объект в том знначении, в котором он пришел
         const step = state.steps[state.currentStep - 1];
         const isSuccess = step.currentValue === action.payload;
-        
+
         // проверка на то, если уже значение в entereadValue
         if (step.entereadValue === null) {
           state.steps[state.currentStep - 1] = {
@@ -42,9 +42,22 @@ export const playgroundSlice = createSlice({
         }
       }
     },
+    // если кнопка была не нажата вовсе
+    setUnsuccess: (state) => {
+      if (state.steps.length) {
+        const step = state.steps[state.currentStep - 1]
+
+        if (step.entereadValue === null) {
+          state.steps[state.currentStep - 1] = {
+            ...step,
+            success: false,
+          };
+        }
+      }
+    }
   },
 });
 
-export const { setCurrentStep, setSteps, setEnteredValue } =
+export const { setCurrentStep, setSteps, setEnteredValue, setUnsuccess } =
   playgroundSlice.actions;
 export default playgroundSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { INTERVAL_TIME } from "./constants";
-import { setCurrentStep, setSteps } from "./store/slices";
+import { setCurrentStep, setSteps, setUnsuccess } from "./store/slices";
 import RandomKeys from "./components/RandomKeys";
 import KeyPressed from "./components/KeyPressed";
 
@@ -17,6 +17,8 @@ const Playground: React.FC = () => {
   useEffect(() => {
     if (isTimerActive) {
       refreshIntervalId.current = setInterval(() => {
+        // setUnsuccess вызываем первым, тк он позволяет проверить предыдущий элемент
+        dispatch(setUnsuccess());
         dispatch(setCurrentStep());
         dispatch(setSteps());
       }, INTERVAL_TIME);

@@ -7,6 +7,8 @@ import { ARR_ARROW_CODES } from "../constants";
 export const initialState: IPlaygroundState = {
   currentStep: 0,
   steps: [],
+  totalSuccessful: 0,
+  totalUnsuccessful: 0,
 };
 
 export const playgroundSlice = createSlice({
@@ -38,7 +40,14 @@ export const playgroundSlice = createSlice({
             // так перезаписал только entereadValue
             ...step,
             entereadValue: action.payload,
+            success: isSuccess,
           };
+        }
+        if (isSuccess) {
+          state.totalSuccessful += 1;
+        } else {
+          state.totalUnsuccessful += 1;
+          state.totalSuccessful = 0;
         }
       }
     },
@@ -48,6 +57,8 @@ export const playgroundSlice = createSlice({
         const step = state.steps[state.currentStep - 1]
 
         if (step.entereadValue === null) {
+          state.totalUnsuccessful += 1;
+          state.totalSuccessful = 0;
           state.steps[state.currentStep - 1] = {
             ...step,
             success: false,

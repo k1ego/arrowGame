@@ -1,36 +1,46 @@
-
-import { useEffect, useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { MAP_ARROW_CODES } from "../../constants";
 
 import { useAppDispatch } from "../../../../app/hooks";
 import { setEnteredValue } from "../../store/slices";
+import { useKeyPressedElement } from "./hooks";
 
 export interface IKeyPressedProps {
-	isTimerActive: boolean;
+  isTimerActive: boolean;
 }
 
 const KeyPressed: React.FC<IKeyPressedProps> = (props) => {
-	const {isTimerActive} = props
+  const { isTimerActive } = props;
 
-	const dispatch = useAppDispatch()
+  const keyPressedElement = useKeyPressedElement();
 
-	// при каждом ререндере будет меняться ссылка на эту функцию и у нас обработчика события на эту функцию и размонтировка компонента
-	// но когда компонент будет размонтироваться, то на объекте будет уже другая ссылка и они будут не равны с первоначальной
-	// значит размонтировка компонента не произойдет, а значит handleKeyDown нужно поместить в useCallback
-	const handleKeyDown = useCallback((e: KeyboardEvent) => {
-		if (MAP_ARROW_CODES.hasOwnProperty(e.key) && isTimerActive) {
-			dispatch(setEnteredValue(e.key))
-		}
-	}, [dispatch, isTimerActive])
+  const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		window.addEventListener("keydown", handleKeyDown)
-		return () => {
-			window.addEventListener("keydown", handleKeyDown)
-		}
-	})
+  // при каждом ререндере будет меняться ссылка на эту функцию и у нас обработчика события на эту функцию и размонтировка компонента
+  // но когда компонент будет размонтироваться, то на объекте будет уже другая ссылка и они будут не равны с первоначальной
+  // значит размонтировка компонента не произойдет, а значит handleKeyDown нужно поместить в useCallback
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (MAP_ARROW_CODES.hasOwnProperty(e.key) && isTimerActive) {
+        dispatch(setEnteredValue(e.key));
+      }
+    },
+    [dispatch, isTimerActive],
+  );
 
-	return <div>KeyPressed</div>
-}
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.addEventListener("keydown", handleKeyDown);
+    };
+  });
 
-export default KeyPressed
+  return (
+    <div>
+      <h3>KeyPressed</h3>
+      <span>{keyPressedElement}</span>
+    </div>
+  );
+};
+
+export default KeyPressed;

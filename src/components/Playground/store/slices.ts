@@ -54,7 +54,7 @@ export const playgroundSlice = createSlice({
     // если кнопка была не нажата вовсе
     setUnsuccess: (state) => {
       if (state.steps.length) {
-        const step = state.steps[state.currentStep - 1]
+        const step = state.steps[state.currentStep - 1];
 
         if (step.entereadValue === null) {
           state.totalUnsuccessful += 1;
@@ -65,10 +65,16 @@ export const playgroundSlice = createSlice({
           };
         }
       }
-    }
+    },
+    resetStore: () => initialState,
   },
 });
 
-export const { setCurrentStep, setSteps, setEnteredValue, setUnsuccess } =
-  playgroundSlice.actions;
+export const {
+  setCurrentStep,
+  setSteps,
+  setEnteredValue,
+  setUnsuccess,
+  resetStore,
+} = playgroundSlice.actions;
 export default playgroundSlice.reducer;

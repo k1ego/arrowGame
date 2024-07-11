@@ -13,6 +13,7 @@ const Playground: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  
   const [isSuccessEndGame, setIsSuccessEndGame] = useState<boolean>(false);
 
   const refreshIntervalId = useRef<ReturnType<typeof setInterval> | null>(null);

@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { MAP_ARROW_CODES } from "../../constants";
 
 import { useAppDispatch } from "../../../../app/hooks";
+import { TypographyHeader, TypographyText } from "../../../UI";
 import { setEnteredValue } from "../../store/slices";
 import { useKeyPressedElement } from "./hooks";
 
@@ -37,7 +38,11 @@ const KeyPressed: React.FC<IKeyPressedProps> = (props) => {
 
   return (
     <div>
-      <h3>KeyPressed</h3>
+      <TypographyHeader>KeyPressed</TypographyHeader>
+      <TypographyText>
+        Press the key corresponding to the key in "Random keys"
+      </TypographyText>
+
       <span>{keyPressedElement}</span>
     </div>
   );

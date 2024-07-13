@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Controls from "./components/Controls";
+import Description from "./components/Description";
 import KeyPressed from "./components/KeyPressed";
 import Modal from "./components/Modal";
 import RandomKeys from "./components/RandomKeys";
@@ -13,7 +14,7 @@ const Playground: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
-  
+
   const [isSuccessEndGame, setIsSuccessEndGame] = useState<boolean>(false);
 
   const refreshIntervalId = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -62,6 +63,7 @@ const Playground: React.FC = () => {
       <RandomKeys isTimerActive={isTimerActive} />
       <KeyPressed isTimerActive={isTimerActive} />
       <Score />
+      <Description />
       {isShowModal && (
         <Modal
           setIsShowModal={setIsShowModal}

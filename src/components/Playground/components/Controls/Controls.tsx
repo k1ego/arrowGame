@@ -1,16 +1,17 @@
-import styles from "./Controls.module.css";
+import styles from "./Controls.module.css"
 
-import { Pause, PlayArrow } from "@mui/icons-material";
-import React from "react";
-import { Button } from "../../../UI";
+import { PlayArrow, Pause } from "@mui/icons-material"
+
+import { Button } from "../../../UI"
 
 export interface IControlsProps {
-  isTimerActive: boolean;
-  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isTimerActive: boolean
+  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Controls: React.FC<IControlsProps> = (props) => {
-  const { isTimerActive, setIsTimerActive } = props;
+  const { isTimerActive, setIsTimerActive } = props
+
   return (
     <div>
       <Button
@@ -30,7 +31,7 @@ const Controls: React.FC<IControlsProps> = (props) => {
         Pause
       </Button>
     </div>
-  );
-};
+  )
+}
 
-export default Controls;
+export default Controls

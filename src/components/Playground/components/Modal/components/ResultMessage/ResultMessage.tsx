@@ -1,13 +1,13 @@
-import styles from "./ResultMessage.modules.css";
+import { TypographyText } from "../../../../../UI"
 
-import { TypographyText } from "../../../../UI";
+import styles from "./ResultMessage.module.css"
 
 export interface IResultMessageProps {
-  isSuccessEndGame: boolean;
+  isSuccessEndGame: boolean
 }
 
 const ResultMessage: React.FC<IResultMessageProps> = (props) => {
-  const { isSuccessEndGame } = props;
+  const { isSuccessEndGame } = props
 
   return (
     <div className={styles.wrapper}>
@@ -21,7 +21,7 @@ const ResultMessage: React.FC<IResultMessageProps> = (props) => {
         </TypographyText>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ResultMessage;
+export default ResultMessage

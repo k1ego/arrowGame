@@ -1,18 +1,17 @@
 import { useAppSelector } from "../../../../app/hooks"
-import { MAP_ARROW_CODES } from "../../constants";
-import { IMapArrowCodes } from "../../types";
+import { MAP_ARROW_CODES } from "../../constants"
+import { IMapArrowCodes } from "../../types"
 
 export const useKeyPressedElement = (): string => {
-	const state = useAppSelector((state) => state.playground)
+  const state = useAppSelector((state) => state.playground)
 
-	if (state.steps.length) {
-		// получаем последний элемент
-		const entereadValue = state.steps[state.currentStep - 1].entereadValue;
-		console.log(entereadValue)
+  if (state.steps.length) {
+    const enteredValue = state.steps[state.currentStep - 1].enteredValue
 
-		if (entereadValue) {
-			return MAP_ARROW_CODES[entereadValue as keyof IMapArrowCodes]
-		}
-	}
-	return "⌛️"
+    if (enteredValue) {
+      return MAP_ARROW_CODES[enteredValue as keyof IMapArrowCodes]
+    }
+  }
+
+  return "⌛️"
 }

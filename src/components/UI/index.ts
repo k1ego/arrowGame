@@ -1,5 +1,5 @@
-import Button from "./Button";
-import TypographyHeader from "./TypographyHeader";
-import TypographyText from "./TypographyText";
+import Button from "./Button"
+import TypographyHeader from "./TypographyHeader"
+import TypographyText from "./TypographyText"
 
-export { Button, TypographyHeader, TypographyText };
+export { Button, TypographyHeader, TypographyText }

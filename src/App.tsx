@@ -1,8 +1,11 @@
-import Playground from "./components/Playground/Playground";
-const App: React.FC = () => {
-  return <div> 
-    <Playground />
-  </div>;
-};
+import Playground from "./components/Playground"
 
-export default App;
+const App: React.FC = () => {
+  return (
+    <div>
+      <Playground />
+    </div>
+  )
+}
+
+export default App

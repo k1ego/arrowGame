@@ -1,51 +1,56 @@
-import { useCallback, useEffect } from "react";
-import { MAP_ARROW_CODES } from "../../constants";
+import { useEffect, useCallback } from "react"
 
-import { useAppDispatch } from "../../../../app/hooks";
-import { TypographyHeader, TypographyText } from "../../../UI";
-import { setEnteredValue } from "../../store/slices";
-import { useKeyPressedElement } from "./hooks";
+import { useAppDispatch } from "../../../../app/hooks"
+import { setEnteredValue } from "../../store/slices"
+import { MAP_ARROW_CODES } from "../../constants"
+import { useKeyPressedElement } from "./hooks"
+import { TypographyHeader, TypographyText } from "../../../UI"
+
+import styles from "./KeyPressed.module.css"
 
 export interface IKeyPressedProps {
-  isTimerActive: boolean;
+  isTimerActive: boolean
 }
 
 const KeyPressed: React.FC<IKeyPressedProps> = (props) => {
-  const { isTimerActive } = props;
+  const { isTimerActive } = props
 
-  const keyPressedElement = useKeyPressedElement();
+  const keyPressedElement = useKeyPressedElement()
 
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  // при каждом ререндере будет меняться ссылка на эту функцию и у нас обработчика события на эту функцию и размонтировка компонента
-  // но когда компонент будет размонтироваться, то на объекте будет уже другая ссылка и они будут не равны с первоначальной
-  // значит размонтировка компонента не произойдет, а значит handleKeyDown нужно поместить в useCallback
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (MAP_ARROW_CODES.hasOwnProperty(e.key) && isTimerActive) {
-        dispatch(setEnteredValue(e.key));
+        dispatch(setEnteredValue(e.key))
       }
     },
     [dispatch, isTimerActive],
-  );
+  )
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown)
+
     return () => {
-      window.addEventListener("keydown", handleKeyDown);
-    };
-  });
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  })
 
   return (
     <div>
-      <TypographyHeader>KeyPressed</TypographyHeader>
-      <TypographyText>
-        Press the key corresponding to the key in "Random keys"
-      </TypographyText>
+      <TypographyHeader>Key pressed</TypographyHeader>
 
-      <span>{keyPressedElement}</span>
+      <div className={styles.container}>
+        <TypographyText>
+          Press the key corresponding to the key in "Random keys"
+        </TypographyText>
+
+        <div className={styles.wrapper}>
+          <span className={styles.icon}>{keyPressedElement}</span>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default KeyPressed;
+export default KeyPressed

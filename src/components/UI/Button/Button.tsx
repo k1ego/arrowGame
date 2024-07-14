@@ -3,16 +3,14 @@ import cn from "classnames"
 import {
   Button as MaterialButton,
   ButtonProps as MaterialButtonProps,
-} from "@mui/material";
-import styles from "./Button.module.css";
+} from "@mui/material"
 
-export interface IButtonProps extends MaterialButtonProps {
-  //
-}
+import styles from "./Button.module.css"
+
+export interface IButtonProps extends MaterialButtonProps {}
 
 const Button: React.FC<IButtonProps> = (props) => {
-  const { children, className="" } = props;
-  console.log(props)
+  const { children, className = "" } = props
 
   return (
     <MaterialButton
@@ -23,7 +21,7 @@ const Button: React.FC<IButtonProps> = (props) => {
     >
       {children}
     </MaterialButton>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

@@ -1,17 +1,16 @@
+import cn from "classnames"
+
 import {
   Typography as MaterialTypography,
   TypographyProps as MaterialTypographyProps,
-} from "@mui/material";
-import cn from "classnames";
+} from "@mui/material"
 
-import styles from "./TypographyHeader.module.css";
+import styles from "./TypographyHeader.module.css"
 
-export interface ITypographyHeaderProps extends MaterialTypographyProps {
-  //
-}
+export interface ITypographyHeaderProps extends MaterialTypographyProps {}
 
 const TypographyHeader: React.FC<ITypographyHeaderProps> = (props) => {
-  const { children, className = "" } = props;
+  const { children, className = "" } = props
 
   return (
     <MaterialTypography
@@ -21,7 +20,7 @@ const TypographyHeader: React.FC<ITypographyHeaderProps> = (props) => {
     >
       {children}
     </MaterialTypography>
-  );
-};
+  )
+}
 
-export default TypographyHeader;
+export default TypographyHeader
